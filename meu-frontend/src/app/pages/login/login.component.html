@@ -1,0 +1,20 @@
+<div class="login-container">
+    <h2>Login</h2>
+  
+    <form (ngSubmit)="onLogin()">
+      <div class="form-group">
+        <label for="nome">Username:</label>
+        <input type="text" id="nome" [(ngModel)]="nome" name="nome" required />
+      </div>
+      
+      <div class="form-group">
+        <label for="senha">Password:</label>
+        <input type="senha" id="senha" [(ngModel)]="senha" name="senha" required />
+      </div>
+      
+      <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+
+    <p>Não tem uma conta? <a [routerLink]="['/login-cadastro']">Cadastre-se aqui</a></p>
+  </div>
+  

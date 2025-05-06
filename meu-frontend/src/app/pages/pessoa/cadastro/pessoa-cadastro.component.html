@@ -1,0 +1,24 @@
+<h2>Cadastro de Pessoa</h2>
+
+<form [formGroup]="form" (ngSubmit)="salvar()" class="container mt-3">
+    <div class="mb-3">
+      <label for="nome" class="form-label">Nome</label>
+      <input type="text" id="nome" class="form-control" formControlName="nome" required />
+      <div *ngIf="form.get('nome')?.touched && form.get('nome')?.invalid" class="text-danger">
+        Nome é obrigatório.
+      </div>
+    </div>
+  
+    <div class="mb-3">
+      <label for="idade" class="form-label">Idade</label>
+      <input type="number" id="idade" class="form-control" formControlName="idade" required />
+      <div *ngIf="form.get('idade')?.touched && form.get('idade')?.invalid" class="text-danger">
+        Idade é obrigatória e deve ser maior que 0.
+      </div>
+    </div>
+  
+    <div class="d-flex gap-2">
+      <button type="submit" class="btn btn-primary">Salvar</button>
+      <button  class="btn btn-secondary" routerLink="/pessoa-consulta">Cancelar</button>
+    </div>
+</form>
