@@ -4,11 +4,19 @@ import { AuthService } from '../../../auth/auth.service';
 import { AuthRequest } from '../../../auth/auth.models';
 import { sharedImports } from '../../../shared/shared';
 import { NotificacaoService } from '../../shared/services/notificacao.service';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [...sharedImports],
+  imports: [...sharedImports,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    FormsModule],
   templateUrl: './login.component.html',
   styleUrl : './login.component.scss'
 })

@@ -1,0 +1,93 @@
+:host {
+  .diagram-container {
+    height: 646px;
+    width: 100%;
+  }
+
+  ::ng-deep {
+
+    .djs-palette {
+
+      // visibility: hidden;
+      input {
+        pointer-events: none;
+      }
+    }
+
+    .djs-overlay-context-pad {
+      visibility: hidden;
+    }
+  }
+
+  ::ng-deep {
+    .djs-popup-parent {
+      width: 100px;
+    }
+  }
+
+  ::ng-deep {
+    .djs-popup-group {
+      height: 60px;
+    }
+  }
+
+  ::ng-deep {
+
+    .bpmn-icon-intermediate-event-none,
+    .bpmn-icon-subprocess-expanded,
+    .bpmn-icon-data-object,
+    .bpmn-icon-data-store,
+    .bpmn-icon-participant,
+    .bpmn-icon-group {
+      display: none;
+    }
+
+  }
+
+  ::ng-deep .djs-label text,
+  ::ng-deep .djs-label tspan {
+    font-size: 11px !important;
+  }
+}
+
+::ng-deep .bjs-powered-by {
+  //display: none;
+}
+
+#custom-tooltip {
+  position: absolute;
+  padding: 6px 10px;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  border-radius: 4px;
+  font-size: 13px;
+  pointer-events: none;
+  white-space: nowrap;
+  z-index: 1000;
+  transition: opacity 0.2s ease;
+  transform: translateX(-50%);
+}
+
+#custom-tooltip::after {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 6px 6px 0 6px;
+  border-style: solid;
+  border-color: rgba(0, 0, 0, 0.8) transparent transparent transparent;
+  pointer-events: none;
+}
+
+/* Quando o tooltip aparece embaixo do elemento */
+#custom-tooltip.down {
+  transform: translateX(-50%);
+}
+
+#custom-tooltip.down::after {
+  top: -6px;
+  bottom: auto;
+  border-width: 0 6px 6px 6px;
+  border-color: transparent transparent rgba(0, 0, 0, 0.8) transparent;
+}

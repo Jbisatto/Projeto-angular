@@ -1,8 +1,9 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { sharedImports } from "../../../../shared/shared";
 import { AuthService } from "../../../../auth/auth.service";
 import { Router } from "@angular/router";
 import { NotificacaoService } from "../../../shared/services/notificacao.service";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 
 @Component({
     selector: 'app-login-cadastro',
@@ -11,28 +12,39 @@ import { NotificacaoService } from "../../../shared/services/notificacao.service
     templateUrl: './login-cadastro.component.html',
     styleUrl : './login-cadastro.component.scss'
   })
-  export class LoginCadastroComponent {
-    nome: string = '';
-    senha: string = '';
-    confirmPassword: string = '';
+  export class LoginCadastroComponent implements OnInit {
     errorMessage: string = '';
     successMessage: string = '';
+    form!: FormGroup;
   
     constructor(
       private authService: AuthService,
       private router: Router,
-      private notificacao: NotificacaoService
+      private notificacao: NotificacaoService,
+      
+    private fb: FormBuilder
     ) {}
+    ngOnInit(): void {
+        this.form = this.fb.group({
+            nome: ['', Validators.required],
+            senha: [null, [Validators.required]],
+            confirmPassword: [null, [Validators.required]],
+          });
+    }
   
     onRegister() {
-      if (this.senha !== this.confirmPassword) {
+        if (!this.form.valid) {
+            return;
+        }
+        const { nome, senha, confirmPassword } = this.form.value;
+      if (senha !== confirmPassword) {
         this.notificacao.mostrar('As senhas não coincidem');
         return;
       }
   
       const user = {
-        nome: this.nome,
-        senha: this.senha
+        nome: nome,
+        senha: senha
       };
   
       this.authService.register(user).subscribe({
